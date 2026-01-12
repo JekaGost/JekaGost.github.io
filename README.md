@@ -52,7 +52,7 @@ If you want to explore the code or run the project on your machine:
 
 ## 📄 License
 
-This project is distributed under the MIT License. You are free to use the code for learning or creating your own portfolio.
+This project is distributed under the MIT LICENSE. You are free to use the code for learning or creating your own portfolio.
 *Resume text and personal photos are copyrighted.*
 
 ---
