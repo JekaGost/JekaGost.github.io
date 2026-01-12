@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,37 +73,31 @@
             background: #555; 
         }
     </style>
-    <!-- Chosen Palette: Warm Neutrals with Slate Accents -->
-    <!-- Application Structure Plan: Multilingual SPA. 
-         - Data separated into 'uk', 'ru', 'tr', 'en' objects.
-         - 'currentLang' state variable controls rendering.
-         - Language switcher in Sidebar.
-         - All charts and text update dynamically.
-    -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="h-screen flex flex-col md:flex-row overflow-hidden">
 
     <!-- Mobile Header -->
     <header class="md:hidden bg-white shadow-sm p-4 flex justify-between items-center z-10">
-        <h1 class="text-xl font-bold text-gray-800" id="mobile-name">Євгеній Гостищев</h1>
+        <h1 class="text-xl font-bold text-gray-800" id="mobile-name">Ievgenii Gostyshchev</h1>
         <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none text-2xl">☰</button>
     </header>
 
     <!-- Sidebar Navigation -->
     <nav id="sidebar" class="bg-white w-full md:w-72 flex-shrink-0 border-r border-gray-200 hidden md:flex flex-col h-full absolute md:relative z-20 transition-all duration-300 transform -translate-x-full md:translate-x-0">
         <div class="p-6 border-b border-gray-100 hidden md:block">
-            <h2 class="text-2xl font-bold text-gray-800" id="sidebar-name">Євгеній Гостищев</h2>
+            <h2 class="text-2xl font-bold text-gray-800" id="sidebar-name">Ievgenii Gostyshchev</h2>
             <p class="text-sm text-gray-500 mt-1" id="sidebar-role">Junior Software Developer</p>
         </div>
 
         <!-- Language Switcher -->
         <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
-            <label class="text-xs font-bold text-gray-400 uppercase mb-2 block" id="lang-label">Мова / Language</label>
+            <label class="text-xs font-bold text-gray-400 uppercase mb-2 block" id="lang-label">Language</label>
             <div class="grid grid-cols-4 gap-2">
-                <button onclick="setLanguage('uk')" class="lang-btn p-1 rounded text-sm font-bold border border-gray-300 hover:bg-white transition-colors active-lang bg-gray-800 text-white" data-lang="uk">UA</button>
-                <button onclick="setLanguage('en')" class="lang-btn p-1 rounded text-sm font-bold border border-gray-300 hover:bg-white text-gray-600 transition-colors" data-lang="en">EN</button>
+                <!-- ORDER CHANGED: EN, TR, UA, RU -->
+                <button onclick="setLanguage('en')" class="lang-btn p-1 rounded text-sm font-bold border border-gray-300 hover:bg-white transition-colors active-lang bg-gray-800 text-white" data-lang="en">EN</button>
                 <button onclick="setLanguage('tr')" class="lang-btn p-1 rounded text-sm font-bold border border-gray-300 hover:bg-white text-gray-600 transition-colors" data-lang="tr">TR</button>
+                <button onclick="setLanguage('uk')" class="lang-btn p-1 rounded text-sm font-bold border border-gray-300 hover:bg-white text-gray-600 transition-colors" data-lang="uk">UA</button>
                 <button onclick="setLanguage('ru')" class="lang-btn p-1 rounded text-sm font-bold border border-gray-300 hover:bg-white text-gray-600 transition-colors" data-lang="ru">RU</button>
             </div>
         </div>
@@ -112,22 +106,22 @@
             <ul class="space-y-1">
                 <li>
                     <button onclick="navigateTo('overview')" class="nav-item w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-50 transition-colors flex items-center active" id="nav-overview">
-                        <span class="mr-3">📊</span> <span class="nav-text">Огляд</span>
+                        <span class="mr-3">📊</span> <span class="nav-text">Overview</span>
                     </button>
                 </li>
                 <li>
                     <button onclick="navigateTo('skills')" class="nav-item w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-50 transition-colors flex items-center" id="nav-skills">
-                        <span class="mr-3">💻</span> <span class="nav-text">Навички</span>
+                        <span class="mr-3">💻</span> <span class="nav-text">Skills</span>
                     </button>
                 </li>
                 <li>
                     <button onclick="navigateTo('experience')" class="nav-item w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-50 transition-colors flex items-center" id="nav-experience">
-                        <span class="mr-3">📅</span> <span class="nav-text">Досвід</span>
+                        <span class="mr-3">📅</span> <span class="nav-text">Experience</span>
                     </button>
                 </li>
                 <li>
                     <button onclick="navigateTo('projects')" class="nav-item w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-50 transition-colors flex items-center" id="nav-projects">
-                        <span class="mr-3">🚀</span> <span class="nav-text">Проєкти</span>
+                        <span class="mr-3">🚀</span> <span class="nav-text">Projects</span>
                     </button>
                 </li>
             </ul>
@@ -135,8 +129,12 @@
 
         <div class="p-6 border-t border-gray-100 bg-gray-50">
             <div class="text-sm text-gray-600">
-                <p class="mb-2"><span class="mr-2">📍</span> <span id="location-text">Стамбул, Туреччина</span></p>
-                <p class="mb-2"><span class="mr-2">📧</span> <a href="mailto:gostyshchev.ievgenii@gmail.com" class="hover:text-blue-600 truncate block">gostyshchev...</a></p>
+                <p class="mb-2"><span class="mr-2">📍</span> <span id="location-text">Istanbul, Turkey</span></p>
+                <!-- EMAIL FIX: Removed truncate, added text-xs (smaller font) and break-all to ensure it fits -->
+                <p class="mb-2 flex items-start">
+                    <span class="mr-2 mt-0.5">📧</span> 
+                    <a href="mailto:gostyshchev.ievgenii@gmail.com" class="hover:text-blue-600 block text-xs break-all">gostyshchev.ievgenii@gmail.com</a>
+                </p>
                 <div class="flex space-x-4 mt-4">
                     <a href="https://www.linkedin.com/in/ievgenii-gostyshchev-37813b3a5" target="_blank" class="text-blue-700 hover:opacity-80 text-xl font-bold" title="LinkedIn">in</a>
                     <a href="https://github.com/JekaGost" target="_blank" class="text-gray-800 hover:opacity-80 text-xl font-bold" title="GitHub">Git</a>
@@ -161,7 +159,7 @@
             <div class="mb-4 flex flex-wrap gap-2" id="modal-tags"></div>
             <p id="modal-desc" class="text-gray-600 leading-relaxed mb-6"></p>
             <div class="bg-gray-50 p-4 rounded text-sm text-gray-500">
-                <span class="font-semibold" id="modal-role-label">Роль:</span> <span id="modal-role"></span>
+                <span class="font-semibold" id="modal-role-label">Role:</span> <span id="modal-role"></span>
             </div>
         </div>
     </div>
@@ -346,7 +344,6 @@
             }
         };
 
-        // Shared Technical Data (Language Agnostic mostly, but categories need translation in filter)
         const techSkills = [
             { name: "Python", level: 60, category: "dev" },
             { name: "C#", level: 70, category: "dev" },
@@ -354,22 +351,17 @@
             { name: "Flutter (Dart)", level: 65, category: "mobile" },
             { name: "SQL", level: 60, category: "data" },
             { name: "HTML/CSS", level: 75, category: "web" },
-            { name: "Git", level: 70, category: "tools" }, // mapped to dev/tools
+            { name: "Git", level: 70, category: "tools" },
             { name: "LQA / Trans", level: 95, category: "ling" }
         ];
 
-        // State
-        let currentLang = 'uk';
+        let currentLang = 'en'; // CHANGED: Default is now English
         let currentView = 'overview';
         let skillChartInstance = null;
         let langChartInstance = null;
 
-        // --- Core Functions ---
-
         function setLanguage(lang) {
             currentLang = lang;
-            
-            // Update Lang Buttons Style
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 if(btn.dataset.lang === lang) {
                     btn.classList.add('bg-gray-800', 'text-white', 'active-lang');
@@ -380,38 +372,29 @@
                 }
             });
 
-            // Update Static UI Text
             const ui = uiTranslations[lang];
             
-            // Nav
             document.querySelector('#nav-overview .nav-text').textContent = ui.nav.overview;
             document.querySelector('#nav-skills .nav-text').textContent = ui.nav.skills;
             document.querySelector('#nav-experience .nav-text').textContent = ui.nav.experience;
             document.querySelector('#nav-projects .nav-text').textContent = ui.nav.projects;
             
-            // Sidebar info
             document.getElementById('sidebar-name').textContent = resumeData[lang].name;
             document.getElementById('mobile-name').textContent = resumeData[lang].name;
-            document.getElementById('sidebar-role').textContent = "Junior Software Developer"; // Universal term
+            document.getElementById('sidebar-role').textContent = "Junior Software Developer";
             document.getElementById('lang-label').textContent = ui.langLabel;
             document.getElementById('location-text').textContent = ui.location;
             document.getElementById('modal-role-label').textContent = ui.roleLabel;
 
-            // Re-render current view
             renderContent(currentView);
         }
 
         function navigateTo(viewId) {
             currentView = viewId;
-            
-            // Update Active Nav Style
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             const activeNav = document.getElementById(`nav-${viewId}`);
             if(activeNav) activeNav.classList.add('active');
-
             renderContent(viewId);
-
-            // Close mobile sidebar
             const sidebar = document.getElementById('sidebar');
             if (!sidebar.classList.contains('hidden') && window.innerWidth < 768) {
                 sidebar.classList.add('-translate-x-full');
@@ -430,10 +413,7 @@
             else if (viewId === 'projects') renderProjects(container, data, ui);
         }
 
-        // --- View Renderers ---
-
         function renderOverview(container, data, ui) {
-            // Intro
             const intro = document.createElement('div');
             intro.className = "mb-8 bg-white rounded-xl shadow-sm p-6 border border-gray-100";
             intro.innerHTML = `
@@ -448,7 +428,6 @@
             `;
             container.appendChild(intro);
 
-            // Stats
             const stats = document.createElement('div');
             stats.className = "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8";
             data.stats.forEach(stat => {
@@ -461,7 +440,6 @@
             });
             container.appendChild(stats);
 
-            // Lang Chart Wrapper
             const chartSection = document.createElement('div');
             chartSection.className = "bg-white rounded-xl shadow-sm p-6 border border-gray-100";
             chartSection.innerHTML = `
@@ -491,7 +469,6 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="skills-list"></div>
             `;
 
-            // Filters
             const filtersDiv = document.getElementById('skill-filters');
             const cats = ['all', 'dev', 'data', 'web', 'mobile', 'ling'];
             cats.forEach(cat => {
@@ -510,7 +487,6 @@
                 filtersDiv.appendChild(btn);
             });
 
-            // List
             const listDiv = document.getElementById('skills-list');
             techSkills.forEach(skill => {
                 listDiv.innerHTML += `
@@ -536,7 +512,6 @@
             `;
             
             const tlContainer = document.getElementById('timeline-container');
-            
             data.timeline.forEach((item, index) => {
                 const isLeft = index % 2 === 0;
                 const row = document.createElement('div');
@@ -601,8 +576,6 @@
             });
         }
 
-        // --- Charts ---
-
         function initLangChart(data, ui) {
             const ctx = document.getElementById('languageChart').getContext('2d');
             if(langChartInstance) langChartInstance.destroy();
@@ -613,7 +586,7 @@
                     labels: data.chartLangLabels,
                     datasets: [{
                         label: ui.chartLang,
-                        data: [100, 100, 90, 75], // TR, RU, UA, EN
+                        data: [100, 100, 90, 75],
                         backgroundColor: 'rgba(59, 130, 246, 0.2)',
                         borderColor: 'rgba(59, 130, 246, 1)',
                         pointBackgroundColor: 'rgba(59, 130, 246, 1)',
@@ -700,8 +673,6 @@
             });
         }
 
-        // --- Modals & Mobile Menu ---
-
         function openProjectModal(project) {
             const ui = uiTranslations[currentLang];
             document.getElementById('modal-title').textContent = project.title;
@@ -727,9 +698,8 @@
             if (e.target.id === 'project-modal') closeModal();
         });
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            setLanguage('uk'); // Default
+            setLanguage('en'); // Default set to English
         });
 
     </script>
